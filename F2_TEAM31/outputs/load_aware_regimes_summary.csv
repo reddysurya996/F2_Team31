@@ -1,0 +1,21 @@
+regime_type,regime,window_count,model,seed_count,MAE_mean_Mbps,MAE_std_Mbps,RMSE_mean_Mbps,RMSE_std_Mbps,MAE_mean_units,MAE_std_units,RMSE_mean_units,RMSE_std_units
+Test Local Observed Tertiles,High (Local Obs),131,Load-Aware Graph-GRU (Dynamic),3,23.746,0.049,32.322,0.040,8904686.667,18504.309,12120828.333,14872.184
+Test Local Observed Tertiles,High (Local Obs),131,Similarity-only Graph-GRU (α=0.0),3,23.746,0.049,32.322,0.040,8904686.667,18504.309,12120828.333,14872.184
+Test Local Observed Tertiles,High (Local Obs),131,Fixed 50/50 Mixed Graph-GRU (α=0.5),3,21.191,0.067,28.873,0.154,7946588.000,24981.192,10827536.667,57621.704
+Test Local Observed Tertiles,High (Local Obs),131,GRU (Temporal Baseline),3,19.567,0.286,28.510,0.361,7337590.000,107391.640,10691396.000,135333.381
+Test Local Observed Tertiles,High (Local Obs),131,Physical Graph-GRU (α=1.0),3,22.499,0.034,31.460,0.051,8437092.000,12864.125,11797631.000,19183.982
+Test Local Observed Tertiles,Low (Local Obs),131,Load-Aware Graph-GRU (Dynamic),3,21.387,0.020,29.716,0.152,8019951.000,7374.636,11143601.000,57009.624
+Test Local Observed Tertiles,Low (Local Obs),131,Similarity-only Graph-GRU (α=0.0),3,21.387,0.020,29.716,0.152,8019951.000,7374.636,11143601.000,57009.624
+Test Local Observed Tertiles,Low (Local Obs),131,Fixed 50/50 Mixed Graph-GRU (α=0.5),3,24.597,0.585,36.220,1.023,9223723.000,219467.508,13582525.333,383483.854
+Test Local Observed Tertiles,Low (Local Obs),131,GRU (Temporal Baseline),3,26.672,2.228,38.285,4.220,10001887.333,835590.476,14357024.667,1582377.255
+Test Local Observed Tertiles,Low (Local Obs),131,Physical Graph-GRU (α=1.0),3,27.259,0.290,40.099,0.735,10222136.000,108815.170,15037005.333,275716.697
+Test Local Observed Tertiles,Medium (Local Obs),130,Load-Aware Graph-GRU (Dynamic),3,21.694,0.029,29.924,0.053,8135267.333,10786.441,11221515.333,19784.486
+Test Local Observed Tertiles,Medium (Local Obs),130,Similarity-only Graph-GRU (α=0.0),3,21.694,0.029,29.924,0.053,8135267.333,10786.441,11221515.333,19784.486
+Test Local Observed Tertiles,Medium (Local Obs),130,Fixed 50/50 Mixed Graph-GRU (α=0.5),3,22.940,0.366,32.636,0.672,8602652.000,137388.270,12238383.000,251868.085
+Test Local Observed Tertiles,Medium (Local Obs),130,GRU (Temporal Baseline),3,22.164,1.555,32.141,2.685,8311563.333,583148.121,12052998.667,1007004.051
+Test Local Observed Tertiles,Medium (Local Obs),130,Physical Graph-GRU (α=1.0),3,26.659,0.146,37.866,0.356,9996950.000,54730.935,14199927.000,133676.602
+Training Cutoffs,Low,392,Load-Aware Graph-GRU (Dynamic),3,22.277,0.025,30.679,0.065,8353858.000,9393.081,11504596.667,24343.492
+Training Cutoffs,Low,392,Similarity-only Graph-GRU (α=0.0),3,22.277,0.025,30.679,0.065,8353858.000,9393.081,11504596.667,24343.492
+Training Cutoffs,Low,392,Fixed 50/50 Mixed Graph-GRU (α=0.5),3,22.909,0.339,32.715,0.644,8590958.333,126970.314,12268250.667,241653.338
+Training Cutoffs,Low,392,GRU (Temporal Baseline),3,22.803,1.354,33.247,2.537,8550956.333,507672.822,12467682.667,951355.491
+Training Cutoffs,Low,392,Physical Graph-GRU (α=1.0),3,25.469,0.144,36.656,0.398,9550924.333,54018.108,13745969.000,149323.263

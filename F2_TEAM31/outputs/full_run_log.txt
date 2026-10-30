@@ -1,0 +1,111 @@
+
+>>> Full run: EPOCHS = 80  (default, unmodified)
+>>> Seeds: (7, 21, 42)
+>>> Alphas: (0.0, 0.25, 0.5, 0.75, 1.0)
+Using device: cpu
+
+--- Observed Input Load Ranges by Split (Gbps) ---
+Split         N         Min       P10       P33       P50       P67       P90       Max      Mean       Std
+----------------------------------------------------------------------------------------------------
+Train      1197       5.432     6.732     7.868     8.442     9.201    10.185    22.120     8.540     1.529
+Val         391       4.739     5.313     6.246     6.889     7.517     8.867    14.350     6.983     1.349
+Test        392       4.976     5.306     5.656     5.866     6.067     6.581     7.261     5.890     0.482
+Saved load range statistics to: /Users/suryavardhan/Documents/Codex/2026-10-23/he/CN project/CN_project_download/outputs/load_aware_load_ranges_full.csv
+
+--- Training-Defined Regime Cutoffs (used for all classification) ---
+  P33.3 (Low/Medium boundary): 7.868 Gbps  (2,950,478,592 units)
+  P66.7 (Medium/High boundary): 9.201 Gbps  (3,450,427,136 units)
+
+Window counts per training-defined regime:
+  Validation (391 total) -> Low: 300, Medium: 73, High: 18
+  Test (392 total) -> Low: 392, Medium: 0, High: 0
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  WARNING: All 392 test windows fall in the training-defined
+  'Low' regime.  Dataset shift detected: the test period is entirely
+  within the low-traffic band of the training distribution.
+  Medium and High test regime performance CANNOT be evaluated.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+--- Training Alpha Candidates & Evaluating Validation Regimes ---
+
+Seed 7:
+
+Seed 21:
+
+Seed 42:
+Saved validation regime scores to: /Users/suryavardhan/Documents/Codex/2026-10-23/he/CN project/CN_project_download/outputs/load_aware_validation_regime_scores_full.csv
+Saved validation regime chart to: /Users/suryavardhan/Documents/Codex/2026-10-23/he/CN project/CN_project_download/outputs/load_aware_val_regimes_full.png
+
+--- Selected Alpha* per Regime (Validation MAE Only) ---
+  Seed 7 | Low    (<= 7.87 Gbps): alpha* = 0.00  (Val MAE: 21.80 Mbps)
+  Seed 7 | Medium ((7.87, 9.20] Gbps): alpha* = 0.00  (Val MAE: 23.45 Mbps)
+  Seed 7 | High   (> 9.20 Gbps): alpha* = 0.00  (Val MAE: 37.98 Mbps)
+  Seed 21 | Low    (<= 7.87 Gbps): alpha* = 0.00  (Val MAE: 21.86 Mbps)
+  Seed 21 | Medium ((7.87, 9.20] Gbps): alpha* = 0.00  (Val MAE: 23.51 Mbps)
+  Seed 21 | High   (> 9.20 Gbps): alpha* = 0.00  (Val MAE: 37.86 Mbps)
+  Seed 42 | Low    (<= 7.87 Gbps): alpha* = 0.00  (Val MAE: 21.97 Mbps)
+  Seed 42 | Medium ((7.87, 9.20] Gbps): alpha* = 0.00  (Val MAE: 23.92 Mbps)
+  Seed 42 | High   (> 9.20 Gbps): alpha* = 0.00  (Val MAE: 39.31 Mbps)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  WARNING: alpha* = 0.00 was selected for ALL regimes and all seeds.
+  The model is NOT adaptive: it uses a fixed alpha everywhere.
+  It is functionally identical to the static alpha=0.00 baseline.
+  Do NOT describe this as an adaptive or load-aware model in reports.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Saved selected alphas to: /Users/suryavardhan/Documents/Codex/2026-10-23/he/CN project/CN_project_download/outputs/load_aware_selected_alphas_full.csv
+
+Saved per-seed results to: /Users/suryavardhan/Documents/Codex/2026-10-23/he/CN project/CN_project_download/outputs/load_aware_model_results_full.csv
+Saved overall summary to: /Users/suryavardhan/Documents/Codex/2026-10-23/he/CN project/CN_project_download/outputs/load_aware_model_summary_full.csv
+Saved regime summary to: /Users/suryavardhan/Documents/Codex/2026-10-23/he/CN project/CN_project_download/outputs/load_aware_regimes_summary_full.csv
+Saved comparison chart to: /Users/suryavardhan/Documents/Codex/2026-10-23/he/CN project/CN_project_download/outputs/load_aware_comparison_full.png
+
+====================================================================================================
+OVERALL TEST PERFORMANCE  (Mean +/- Std across 3 seeds)
+====================================================================================================
+  NOTE: All 392 test windows fall in the training-defined 'Low' regime.
+  Medium/High test regime performance COULD NOT be evaluated under this policy.
+====================================================================================================
+  Model                                                | MAE (Mbps)                 | RMSE (Mbps)
+----------------------------------------------------------------------------------------------------
+  alpha*-Selected Graph-GRU (alpha=0.00 uniform, NON-ADAPTIVE) | 22.28 +/- 0.03 Mbps      | 30.68 +/- 0.06 Mbps
+  Similarity-only Graph-GRU (alpha=0.0)                | 22.28 +/- 0.03 Mbps      | 30.68 +/- 0.06 Mbps
+  Fixed 50/50 Mixed Graph-GRU (alpha=0.5)              | 22.91 +/- 0.34 Mbps      | 32.72 +/- 0.64 Mbps
+  GRU (Temporal Baseline)                              | 22.80 +/- 1.35 Mbps      | 33.25 +/- 2.54 Mbps
+  Physical Graph-GRU (alpha=1.0)                       | 25.47 +/- 0.14 Mbps      | 36.66 +/- 0.40 Mbps
+====================================================================================================
+
+==============================================================================================================
+PER-REGIME TEST PERFORMANCE -- PRIMARY (Training-Cutoff Regimes, Mean +/- Std)
+==============================================================================================================
+  Regime: Low      | N= 392 | alpha*-Selected Graph-GRU (alpha=0.00 uniform, NON-ADAPTIVE) | MAE: 22.28 +/- 0.03 Mbps
+  Regime: Low      | N= 392 | Similarity-only Graph-GRU (alpha=0.0)                | MAE: 22.28 +/- 0.03 Mbps
+  Regime: Low      | N= 392 | Fixed 50/50 Mixed Graph-GRU (alpha=0.5)              | MAE: 22.91 +/- 0.34 Mbps
+  Regime: Low      | N= 392 | GRU (Temporal Baseline)                              | MAE: 22.80 +/- 1.35 Mbps
+  Regime: Low      | N= 392 | Physical Graph-GRU (alpha=1.0)                       | MAE: 25.47 +/- 0.14 Mbps
+
+  *** NO test windows in regimes: Medium, High -- cannot be evaluated ***
+==============================================================================================================
+
+==============================================================================================================
+[RETROSPECTIVE -- POST-HOC ONLY] Test-Local Tertile Analysis
+  Cutoffs are computed FROM the test data itself.
+  NOT used for policy selection. NOT a prospective regime evaluation.
+==============================================================================================================
+  High [test-local]        | N= 131 | alpha*-Selected Graph-GRU (alpha=0.00 uniform, NON-ADAPTIVE) | MAE: 23.75 +/- 0.05 Mbps
+  High [test-local]        | N= 131 | Similarity-only Graph-GRU (alpha=0.0)                | MAE: 23.75 +/- 0.05 Mbps
+  High [test-local]        | N= 131 | Fixed 50/50 Mixed Graph-GRU (alpha=0.5)              | MAE: 21.19 +/- 0.07 Mbps
+  High [test-local]        | N= 131 | GRU (Temporal Baseline)                              | MAE: 19.57 +/- 0.29 Mbps
+  High [test-local]        | N= 131 | Physical Graph-GRU (alpha=1.0)                       | MAE: 22.50 +/- 0.03 Mbps
+  Low [test-local]         | N= 131 | alpha*-Selected Graph-GRU (alpha=0.00 uniform, NON-ADAPTIVE) | MAE: 21.39 +/- 0.02 Mbps
+  Low [test-local]         | N= 131 | Similarity-only Graph-GRU (alpha=0.0)                | MAE: 21.39 +/- 0.02 Mbps
+  Low [test-local]         | N= 131 | Fixed 50/50 Mixed Graph-GRU (alpha=0.5)              | MAE: 24.60 +/- 0.59 Mbps
+  Low [test-local]         | N= 131 | GRU (Temporal Baseline)                              | MAE: 26.67 +/- 2.23 Mbps
+  Low [test-local]         | N= 131 | Physical Graph-GRU (alpha=1.0)                       | MAE: 27.26 +/- 0.29 Mbps
+  Medium [test-local]      | N= 130 | alpha*-Selected Graph-GRU (alpha=0.00 uniform, NON-ADAPTIVE) | MAE: 21.69 +/- 0.03 Mbps
+  Medium [test-local]      | N= 130 | Similarity-only Graph-GRU (alpha=0.0)                | MAE: 21.69 +/- 0.03 Mbps
+  Medium [test-local]      | N= 130 | Fixed 50/50 Mixed Graph-GRU (alpha=0.5)              | MAE: 22.94 +/- 0.37 Mbps
+  Medium [test-local]      | N= 130 | GRU (Temporal Baseline)                              | MAE: 22.16 +/- 1.56 Mbps
+  Medium [test-local]      | N= 130 | Physical Graph-GRU (alpha=1.0)                       | MAE: 26.66 +/- 0.15 Mbps
+==============================================================================================================
